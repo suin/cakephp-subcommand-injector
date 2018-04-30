@@ -9,7 +9,7 @@ git:
 
 matrix:
   include:
-    - php: nightly
+#    - php: nightly ... I don't test 7.3 because friendsofphp/php-cs-fixer v2.10.2 requires php ^5.6 || >=7.0 <7.3
     - php: 7.1
     - php: 7.2
   fast_finish: true
