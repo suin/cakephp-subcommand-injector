@@ -1,0 +1,45 @@
+{
+  "name": "suin/cakephp-subcommand-injector",
+  "description": "CakePHP Subcommand Injector make it possible that automatical adding Task classes as subcommands of a Shell class.",
+  "keywords": ["cakephp", "cakephp3"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "suin",
+      "email": "suinyeze@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "cakephp/cakephp": "^3.5"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.9",
+    "phpunit/phpunit": "^6.5",
+    "suin/livexample": "^1.2",
+    "suin/php-cs-fixer-rules": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Suin\\CakeSubcommandInjector\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Suin\\CakeSubcommandInjector\\": "tests/",
+      "MyApp\\": "example/my-app/src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "test": "phpunit --colors=always",
+    "test-in-ci": "phpunit --coverage-text --coverage-clover clover.xml",
+    "format": "php-cs-fixer fix --ansi",
+    "format-preview": "php-cs-fixer fix --ansi --dry-run --diff --diff-format=udiff --verbose",
+    "example": "php -d auto_prepend_file=vendor/autoload.php -d xdebug.overload_var_dump=0",
+    "configure-commit-template": "git config --add commit.template .gitmessage"
+  }
+}
