@@ -41,6 +41,7 @@ final class TaskClassesConformingToPsr4 implements TaskClasses
 
     /**
      * {@inheritdoc}
+     * @throws \ReflectionException
      */
     public function listTaskClasses(): array
     {
@@ -58,11 +59,35 @@ final class TaskClassesConformingToPsr4 implements TaskClasses
                 '\\'
             );
 
-            if (is_subclass_of($candidate, Shell::class)) {
+            if (
+                self::classIsInstantiable($candidate) &&
+                is_subclass_of($candidate, Shell::class)
+            ) {
                 $taskClasses[] = new TaskClass($candidate);
             }
         }
 
         return $taskClasses;
+    }
+
+    /**
+     * Checks if the class is instantiable.
+     * @param string $className
+     * @throws \ReflectionException
+     * @return bool
+     */
+    private static function classIsInstantiable(string $className): bool
+    {
+        if (!class_exists($className)) {
+            return false;
+        }
+
+        $class = new \ReflectionClass($className);
+
+        if ($class->isAbstract() || $class->isTrait() || $class->isInterface()) {
+            return false;
+        }
+
+        return true;
     }
 }
