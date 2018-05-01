@@ -30,6 +30,7 @@
 *.xls   binary
 *.zip   binary
 
+.chglog/ export-ignore
 .dockerignore export-ignore
 .envrc export-ignore
 .gitattributes export-ignore
