@@ -11,9 +11,9 @@ class TaskClassesConformingToPsr4Test extends TestCase
     /**
      * @throws \ReflectionException
      */
-    public function testListTaskClasses()
+    public function testListTaskClasses(): void
     {
-        $baseDirectory = sys_get_temp_dir() . '/' . md5(strval(mt_rand()));
+        $baseDirectory = sys_get_temp_dir() . '/' . md5((string) (mt_rand()));
         $filename = $baseDirectory . '/FooTask.php';
         mkdir($baseDirectory);
         touch($filename);
