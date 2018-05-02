@@ -46,7 +46,11 @@ final class TaskClassesConformingToPsr4 implements TaskClasses
     public function listTaskClasses(): array
     {
         $taskClasses = [];
-        $filenames = glob($this->filenamePattern);
+        $filenames = glob($this->filenamePattern, GLOB_ERR);
+
+        if ($filenames === false) {
+            throw new \RuntimeException('Failed to find task classes by the pattern: ' . $this->filenamePattern);
+        }
 
         foreach ($filenames as $filename) {
             $candidate = strtr(
