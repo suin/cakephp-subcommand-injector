@@ -60,6 +60,7 @@ final class TaskClassesConformingToPsr4 implements TaskClasses
             );
 
             if (
+                is_file($filename) &&
                 self::classIsInstantiable($candidate) &&
                 is_subclass_of($candidate, Shell::class)
             ) {
